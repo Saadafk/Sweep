@@ -36,3 +36,8 @@ class TicketOut(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+class TicketUpdate(BaseModel):
+    category: str | None = None
+    priority: str | None = None
+    status: str | None = None
