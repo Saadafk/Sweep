@@ -2,8 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import Column, Integer, String, Text, DateTime
 
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 from app.db import Base
 
 
@@ -20,10 +19,9 @@ class Ticket(Base):
     created_at = Column(DateTime, default=datetime.now)
 
 class TicketCreate(BaseModel):
-    title: str
-    description: str
-    requester: str
-
+    title: str = Field(min_length=3, max_length=200)
+    description: str = Field(min_length=1)
+    requester: str = Field(min_length=1, max_length=100)
 
 class TicketOut(BaseModel):
     id: int
